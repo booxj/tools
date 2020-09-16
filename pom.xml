@@ -4,10 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.booxj</groupId>
-    <artifactId>tool-parent</artifactId>
+    <groupId>com.booxj.tools</groupId>
+    <artifactId>tools-parent</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
 
     <properties>
         <compile.version>8</compile.version>
@@ -49,4 +50,11 @@
             </plugin>
         </plugins>
     </build>
+
+    <modules>
+        <module>tools-all</module>
+        <module>tools-core</module>
+        <module>tools-cache</module>
+        <module>tools-system</module>
+    </modules>
 </project>
