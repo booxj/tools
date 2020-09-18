@@ -107,7 +107,6 @@ public class WeightRandom<T> implements Serializable {
      * 带有权重的对象包装
      *
      * @param <T> 对象类型
-     * @author looly
      */
     public static class WeightObj<T> {
         /**

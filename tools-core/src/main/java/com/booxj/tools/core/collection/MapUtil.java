@@ -1,9 +1,13 @@
 package com.booxj.tools.core.collection;
 
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Map 不属于 {@link Collection},作为Map其他方法的补充
+ */
 public class MapUtil {
 
     public static boolean isEmpty(Map<?, ?> map) {

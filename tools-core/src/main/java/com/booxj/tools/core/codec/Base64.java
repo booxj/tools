@@ -11,16 +11,22 @@ public class Base64 {
     private static java.util.Base64.Encoder encoder = java.util.Base64.getEncoder();
     private static java.util.Base64.Decoder decoder = java.util.Base64.getDecoder();
 
+    // ----------------------------------------------------------------------------------------------- encode
 
     public static byte[] encode(byte[] bytes) {
         return encoder.encode(bytes);
     }
 
-    public static String encode(String str) {
-        return encode(str, DEFAULT_CHARSET);
+    public static byte[] encode(String str) throws UnsupportedEncodingException {
+        return encoder.encode(str.getBytes(DEFAULT_CHARSET));
     }
 
-    public static String encode(String str, String charset) {
+    public static String encodeToString(byte[] bytes) throws UnsupportedEncodingException {
+        byte[] bytes1 = encoder.encode(bytes);
+        return new String(bytes1, DEFAULT_CHARSET);
+    }
+
+    public static String encodeToString(String str, String charset) {
         try {
             return encoder.encodeToString(str.getBytes(charset));
         } catch (UnsupportedEncodingException e) {
@@ -28,15 +34,22 @@ public class Base64 {
         }
     }
 
+    // ----------------------------------------------------------------------------------------------- decode
+
     public static byte[] decode(byte[] bytes) {
         return decoder.decode(bytes);
     }
 
-    public static String decode(String str) {
-        return decode(str, DEFAULT_CHARSET);
+    public static byte[] decode(String str) throws UnsupportedEncodingException {
+        return decoder.decode(str.getBytes(DEFAULT_CHARSET));
     }
 
-    public static String decode(String str, String charset) {
+    public static String decodeToString(byte[] bytes) throws UnsupportedEncodingException {
+        byte[] bytes1 = decoder.decode(bytes);
+        return new String(bytes1, DEFAULT_CHARSET);
+    }
+
+    public static String decodeToString(String str, String charset) {
         try {
             return new String(decoder.decode(str), charset);
         } catch (UnsupportedEncodingException e) {

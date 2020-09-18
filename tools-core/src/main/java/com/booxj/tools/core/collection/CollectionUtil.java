@@ -2,6 +2,9 @@ package com.booxj.tools.core.collection;
 
 import java.util.*;
 
+/**
+ * 集合工具类,封装了{@link Iterable},{@link List},{@link Set},{@link Map} 的相关方法
+ */
 public class CollectionUtil {
 
     public static <E> boolean isEmpty(Collection<E> collection) {
@@ -28,24 +31,6 @@ public class CollectionUtil {
         return !isEmpty(map);
     }
 
-    public static <T> Map<T, Integer> countMap(Iterable<T> collection) {
-        final HashMap<T, Integer> countMap = new HashMap<>();
-        Iterator<T> iterator = collection.iterator();
-        if (null != iterator) {
-            Integer count;
-            T t;
-            while (iterator.hasNext()) {
-                t = iterator.next();
-                count = countMap.get(t);
-                if (null == count) {
-                    countMap.put(t, 1);
-                } else {
-                    countMap.put(t, count + 1);
-                }
-            }
-        }
-        return countMap;
-    }
     // ----------------------------------------------------------------------------------------------- List
 
     public static <T> List<T> newArrayList() {
@@ -67,7 +52,7 @@ public class CollectionUtil {
         Collections.addAll(list, ts);
         return list;
     }
-    // ----------------------------------------------------------------------------------------------- new HashMap
+    // ----------------------------------------------------------------------------------------------- Map
 
     public static <K, V> HashMap<K, V> newHashMap() {
         return new HashMap<>();
@@ -85,7 +70,7 @@ public class CollectionUtil {
         return new LinkedHashMap<>(size);
     }
 
-    // ----------------------------------------------------------------------------------------------- new HashSet
+    // ----------------------------------------------------------------------------------------------- Set
 
     public static <T> HashSet<T> newHashSet() {
         return new HashSet<>();

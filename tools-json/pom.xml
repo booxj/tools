@@ -9,35 +9,30 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>tools-all</artifactId>
+    <artifactId>tools-json</artifactId>
     <name>${project.artifactId}</name>
     <packaging>jar</packaging>
 
+    <properties>
+        <jackson.version>2.11.0</jackson.version>
+    </properties>
+
     <dependencies>
-        <dependency>
-            <groupId>com.booxj.tools</groupId>
-            <artifactId>tools-cache</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
         <dependency>
             <groupId>com.booxj.tools</groupId>
             <artifactId>tools-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.booxj.tools</groupId>
-            <artifactId>tools-crypto</artifactId>
-            <version>${project.parent.version}</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.booxj.tools</groupId>
-            <artifactId>tools-json</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.booxj.tools</groupId>
-            <artifactId>tools-system</artifactId>
-            <version>${project.parent.version}</version>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
     </dependencies>
+
 </project>

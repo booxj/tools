@@ -55,12 +55,10 @@ public class SystemClock {
         return now;
     }
 
-    //------------------------------------------------------------------------ static
+    // ------------------------------------------------------------------------ static
 
     /**
      * 单例
-     *
-     * @author Looly
      */
     private static class InstanceHolder {
         public static final SystemClock INSTANCE = new SystemClock(1);

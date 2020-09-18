@@ -56,5 +56,7 @@
         <module>tools-core</module>
         <module>tools-cache</module>
         <module>tools-system</module>
+        <module>tools-json</module>
+        <module>tools-crypto</module>
     </modules>
 </project>

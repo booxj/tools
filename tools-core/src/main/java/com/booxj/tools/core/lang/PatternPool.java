@@ -176,7 +176,6 @@ public class PatternPool {
     /**
      * 正则表达式和正则标识位的包装
      *
-     * @author Looly
      */
     private static class RegexWithFlag {
         private final String regex;

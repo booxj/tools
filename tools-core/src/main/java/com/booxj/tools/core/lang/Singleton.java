@@ -11,7 +11,6 @@
 // * 单例类<br>
 // * 提供单例对象的统一管理，当调用get方法时，如果对象池中存在此对象，返回此对象，否则创建新对象返回<br>
 // *
-// * @author loolly
 // */
 //public final class Singleton {
 //

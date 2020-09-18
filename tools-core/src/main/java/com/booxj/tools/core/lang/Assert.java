@@ -13,7 +13,7 @@ public class Assert {
     }
 
     public static void isTrue(boolean expression, String errorMsgTemplate, Object... params) throws IllegalArgumentException {
-        if (false == expression) {
+        if (!expression) {
             throw new IllegalArgumentException(StringUtil.format(errorMsgTemplate, params));
         }
     }
@@ -38,8 +38,8 @@ public class Assert {
         }
     }
 
-    public static <T> T notNull(T object) throws IllegalArgumentException {
-        return notNull(object, "[Assertion failed] - this argument is required; it must not be null");
+    public static void notNull(Object object) throws IllegalArgumentException {
+        notNull(object, "[Assertion failed] - the object argument must not be null");
     }
 
     public static <T> T notNull(T object, String errorMsgTemplate, Object... params) throws IllegalArgumentException {
@@ -47,6 +47,13 @@ public class Assert {
             throw new IllegalArgumentException(StringUtil.format(errorMsgTemplate, params));
         }
         return object;
+    }
+
+    public static void notHasNull(Object... objects) throws IllegalArgumentException {
+        notEmpty(objects);
+        for (Object object : objects) {
+            notNull(object, "[Assertion failed] - the object argument must not be null");
+        }
     }
 
     public static <T extends CharSequence> T notBlank(T text, String errorMsgTemplate, Object... params) throws IllegalArgumentException {
@@ -58,17 +65,6 @@ public class Assert {
 
     public static <T extends CharSequence> T notBlank(T text) throws IllegalArgumentException {
         return notBlank(text, "[Assertion failed] - this String argument must have text; it must not be null, empty, or blank");
-    }
-
-    public static String notContain(String textToSearch, String substring, String errorMsgTemplate, Object... params) throws IllegalArgumentException {
-        if (StringUtil.isNotEmpty(textToSearch) && StringUtil.isNotEmpty(substring) && textToSearch.contains(substring)) {
-            throw new IllegalArgumentException(StringUtil.format(errorMsgTemplate, params));
-        }
-        return substring;
-    }
-
-    public static String notContain(String textToSearch, String substring) throws IllegalArgumentException {
-        return notContain(textToSearch, substring, "[Assertion failed] - this String argument must not contain the substring [{}]", substring);
     }
 
     public static Object[] notEmpty(Object[] array, String errorMsgTemplate, Object... params) throws IllegalArgumentException {

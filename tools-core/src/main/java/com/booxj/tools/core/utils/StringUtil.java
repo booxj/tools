@@ -69,7 +69,7 @@ public class StringUtil {
         return true;
     }
 
-    public static boolean isNotBlank(String str) {
+    public static boolean isNotBlank(CharSequence str) {
         return !isBlank(str);
     }
 
@@ -498,7 +498,6 @@ public class StringUtil {
         if (isEmpty(joinStr) || ArrayUtil.isEmpty(args)) {
             return EMPTY;
         }
-
         return Arrays.stream(args).collect(Collectors.joining(joinStr));
     }
 
@@ -679,20 +678,6 @@ public class StringUtil {
     }
 
     /**
-     * 将编码的byteBuffer数据转换为字符串
-     *
-     * @param data    数据
-     * @param charset 字符集，如果为空使用当前系统字符集
-     * @return 字符串
-     */
-    public static String str(ByteBuffer data, Charset charset) {
-        if (null == charset) {
-            charset = Charset.defaultCharset();
-        }
-        return charset.decode(data).toString();
-    }
-
-    /**
      * 将byte数组转为字符串
      *
      * @param bytes   byte数组
@@ -721,6 +706,9 @@ public class StringUtil {
         return new String(data, charset);
     }
 
+    public static byte[] bytes(CharSequence str, String charset) {
+        return bytes(str, isBlank(charset) ? Charset.defaultCharset() : Charset.forName(charset));
+    }
     /**
      * 编码字符串
      *

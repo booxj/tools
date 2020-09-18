@@ -9,8 +9,15 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>tools-cache</artifactId>
+    <artifactId>tools-crypto</artifactId>
     <name>${project.artifactId}</name>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.booxj.tools</groupId>
+            <artifactId>tools-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
 </project>

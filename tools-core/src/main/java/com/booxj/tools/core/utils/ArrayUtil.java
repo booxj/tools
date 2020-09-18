@@ -5,13 +5,9 @@ import com.booxj.tools.core.lang.Assert;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 
 public class ArrayUtil {
-
-    /**
-     * 数组中元素未找到的下标，值为-1
-     */
-    public static final int INDEX_NOT_FOUND = -1;
 
     /**
      * 是否包含{@code null}元素
@@ -91,6 +87,16 @@ public class ArrayUtil {
     }
 
     /**
+     * 数组是否为空
+     *
+     * @param array 数组
+     * @return 是否为空
+     */
+    public static boolean isNotEmpty(byte[] array) {
+        return (array != null && array.length != 0);
+    }
+
+    /**
      * 将集合转为数组
      *
      * @param <T>           数组元素类型
@@ -100,6 +106,31 @@ public class ArrayUtil {
      */
     public static <T> T[] toArray(Collection<T> collection, Class<T> componentType) {
         return collection.toArray(newArray(componentType, 0));
+    }
+
+    public static <T> boolean contains(T[] array, T t) {
+        if (isEmpty(array) || t == null) {
+            return false;
+        }
+
+        for (T a : array) {
+            if (Objects.equals(a, t)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean contains(int[] array, int value) {
+        if (null != array) {
+            for (int i = 0; i < array.length; i++) {
+                if (value == array[i]) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
