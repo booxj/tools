@@ -50,7 +50,7 @@ public class HexUtil {
      * @return 十六进制String
      */
     public static String encodeHexStr(String data) {
-        return new String(encodeHex(StringUtil.bytes(data, CharsetUtil.CHARSET_UTF_8), true));
+        return new String(encodeHex(bytes(data, CharsetUtil.CHARSET_UTF_8), true));
     }
 
     /**
@@ -61,7 +61,7 @@ public class HexUtil {
      * @return 十六进制String
      */
     public static String encodeHexStr(String data, Charset charset) {
-        return new String(encodeHex(StringUtil.bytes(data, charset), true));
+        return new String(encodeHex(bytes(data, charset), true));
     }
 
     /**
@@ -132,7 +132,7 @@ public class HexUtil {
      * @return 字符串
      */
     public static String decodeHexStr(char[] hexData, Charset charset) {
-        return StringUtil.str(decodeHex(hexData), charset);
+        return str(decodeHex(hexData), charset);
     }
 
     /**
@@ -206,5 +206,27 @@ public class HexUtil {
             return null;
         }
         return new BigInteger(hexStr, 16);
+    }
+
+    private static byte[] bytes(CharSequence str, Charset charset) {
+        if (str == null) {
+            return null;
+        }
+
+        if (null == charset) {
+            return str.toString().getBytes();
+        }
+        return str.toString().getBytes(charset);
+    }
+
+    private static String str(byte[] data, Charset charset) {
+        if (data == null) {
+            return null;
+        }
+
+        if (null == charset) {
+            return new String(data);
+        }
+        return new String(data, charset);
     }
 }

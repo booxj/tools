@@ -678,56 +678,6 @@ public class StringUtil {
     }
 
     /**
-     * 将byte数组转为字符串
-     *
-     * @param bytes   byte数组
-     * @param charset 字符集
-     * @return 字符串
-     */
-    public static String str(byte[] bytes, String charset) {
-        return str(bytes, isBlank(charset) ? Charset.defaultCharset() : Charset.forName(charset));
-    }
-
-    /**
-     * 解码字节码
-     *
-     * @param data    字符串
-     * @param charset 字符集，如果此字段为空，则解码的结果取决于平台
-     * @return 解码后的字符串
-     */
-    public static String str(byte[] data, Charset charset) {
-        if (data == null) {
-            return null;
-        }
-
-        if (null == charset) {
-            return new String(data);
-        }
-        return new String(data, charset);
-    }
-
-    public static byte[] bytes(CharSequence str, String charset) {
-        return bytes(str, isBlank(charset) ? Charset.defaultCharset() : Charset.forName(charset));
-    }
-    /**
-     * 编码字符串
-     *
-     * @param str     字符串
-     * @param charset 字符集，如果此字段为空，则解码的结果取决于平台
-     * @return 编码后的字节码
-     */
-    public static byte[] bytes(CharSequence str, Charset charset) {
-        if (str == null) {
-            return null;
-        }
-
-        if (null == charset) {
-            return str.toString().getBytes();
-        }
-        return str.toString().getBytes(charset);
-    }
-
-    /**
      * 将驼峰式命名的字符串转换为使用符号连接方式。如果转换前的驼峰式命名的字符串为空，则返回空字符串。<br>
      *
      * @param str    转换前的驼峰式命名的字符串，也可以为符号连接形式

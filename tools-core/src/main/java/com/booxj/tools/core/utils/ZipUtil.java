@@ -4,12 +4,13 @@ import com.booxj.tools.core.exceptions.UtilException;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.nio.charset.Charset;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 public class ZipUtil {
 
-    public static final String GZIP_ENCODE_UTF_8 = CharsetUtil.UTF_8;
+    public static final Charset GZIP_ENCODE_UTF_8 = CharsetUtil.CHARSET_UTF_8;
     public static final String GZIP_ENCODE_ISO_8859_1 = CharsetUtil.ISO_8859_1;
 
     // ----------------------------------------------------------------------------- Gzip
@@ -70,7 +71,7 @@ public class ZipUtil {
      */
     public static String gzipDecompressToString(byte[] bytes) {
         byte[] bytes1 = gzipDecompress(bytes);
-        return StringUtil.str(bytes1, GZIP_ENCODE_UTF_8);
+        return new String(bytes1, GZIP_ENCODE_UTF_8);
     }
 
     // ----------------------------------------------------------------------------- zip

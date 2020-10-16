@@ -45,8 +45,7 @@ public class Base64 {
     }
 
     public static String decodeToString(byte[] bytes) throws UnsupportedEncodingException {
-        byte[] bytes1 = decoder.decode(bytes);
-        return new String(bytes1, DEFAULT_CHARSET);
+        return new String(bytes, DEFAULT_CHARSET);
     }
 
     public static String decodeToString(String str, String charset) {
