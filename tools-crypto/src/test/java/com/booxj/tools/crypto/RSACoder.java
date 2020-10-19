@@ -153,4 +153,14 @@ public class RSACoder {
         return keyMap;
     }
 
+
+    public static void main(String[] args) throws Exception {
+        Map<String,Object> map = initKey();
+        String s = "12345";
+        byte[] res = encryptByPublicKey(s.getBytes(),getPublicKey(map));
+
+        System.out.println(new String(res));
+
+        System.out.println(new String(decryptByPrivateKey(res,getPrivateKey(map))));
+    }
 }

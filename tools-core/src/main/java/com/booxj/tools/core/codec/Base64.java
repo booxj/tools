@@ -3,10 +3,11 @@ package com.booxj.tools.core.codec;
 import com.booxj.tools.core.utils.CharsetUtil;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 
 public class Base64 {
 
-    private static String DEFAULT_CHARSET = CharsetUtil.UTF_8;
+    private static Charset DEFAULT_CHARSET = CharsetUtil.CHARSET_UTF_8;
 
     private static java.util.Base64.Encoder encoder = java.util.Base64.getEncoder();
     private static java.util.Base64.Decoder decoder = java.util.Base64.getDecoder();
@@ -17,18 +18,23 @@ public class Base64 {
         return encoder.encode(bytes);
     }
 
-    public static byte[] encode(String str) throws UnsupportedEncodingException {
+    public static byte[] encode(String str) {
         return encoder.encode(str.getBytes(DEFAULT_CHARSET));
     }
 
-    public static String encodeToString(byte[] bytes) throws UnsupportedEncodingException {
-        byte[] bytes1 = encoder.encode(bytes);
+    public static String encodeToString(byte[] bytes) {
+        byte[] bytes1 = encode(bytes);
+        return new String(bytes1, DEFAULT_CHARSET);
+    }
+
+    public static String encodeToString(String str) {
+        byte[] bytes1 = encode(str.getBytes(DEFAULT_CHARSET));
         return new String(bytes1, DEFAULT_CHARSET);
     }
 
     public static String encodeToString(String str, String charset) {
         try {
-            return encoder.encodeToString(str.getBytes(charset));
+            return encodeToString(str.getBytes(charset));
         } catch (UnsupportedEncodingException e) {
             throw new UnsupportedOperationException(e);
         }
@@ -40,19 +46,24 @@ public class Base64 {
         return decoder.decode(bytes);
     }
 
-    public static byte[] decode(String str) throws UnsupportedEncodingException {
-        return decoder.decode(str.getBytes(DEFAULT_CHARSET));
+    public static byte[] decode(String str) {
+        return decode(str.getBytes(DEFAULT_CHARSET));
     }
 
-    public static String decodeToString(byte[] bytes) throws UnsupportedEncodingException {
-        return new String(bytes, DEFAULT_CHARSET);
+    public static String decodeToString(byte[] bytes) {
+        return new String(decode(bytes), DEFAULT_CHARSET);
+    }
+
+    public static String decodeToString(String str) {
+        return decodeToString(str.getBytes(DEFAULT_CHARSET));
     }
 
     public static String decodeToString(String str, String charset) {
         try {
-            return new String(decoder.decode(str), charset);
+            return new String(decode(str), charset);
         } catch (UnsupportedEncodingException e) {
             throw new UnsupportedOperationException(e);
         }
     }
+
 }

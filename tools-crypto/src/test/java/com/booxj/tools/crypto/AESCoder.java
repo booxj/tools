@@ -90,11 +90,24 @@ public class AESCoder {
         // 实例化
         KeyGenerator kg = KeyGenerator.getInstance(KEY_ALGORITHM);
         // AES 要求密钥长度为128位、192位或256位
-        kg.init(256);
+        kg.init(128);
         // 生成秘密密钥
         SecretKey secretKey = kg.generateKey();
         // 获得密钥的二进制编码形式
         return secretKey.getEncoded();
     }
 
+    public static void main(String[] args) throws Exception {
+
+        String str = "test string";
+        byte[] secretKey = initKey();
+        Key key = toKey(secretKey);
+
+        Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+        cipher.init(Cipher.ENCRYPT_MODE, key);
+        byte[] en = encrypt(str.getBytes(), key.getEncoded());
+        System.out.println(new String(en));
+        cipher.init(Cipher.DECRYPT_MODE, key);
+        System.out.println(new String(decrypt(en,key.getEncoded())));
+    }
 }

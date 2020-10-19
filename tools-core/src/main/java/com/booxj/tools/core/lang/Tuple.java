@@ -7,6 +7,10 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
 
+/**
+ * 不可变数组类型，用于多值返回<br>
+ * 多值可以支持每个元素值类型不同
+ */
 public class Tuple extends CloneSupport<Tuple> implements Iterable<Object>, Serializable {
 
     private static final long serialVersionUID = -7689304393482182157L;
@@ -17,6 +21,7 @@ public class Tuple extends CloneSupport<Tuple> implements Iterable<Object>, Seri
 
     /**
      * 构造
+     *
      * @param members 成员数组
      */
     public Tuple(Object... members) {
@@ -25,20 +30,22 @@ public class Tuple extends CloneSupport<Tuple> implements Iterable<Object>, Seri
 
     /**
      * 获取指定位置元素
-     * @param <T> 返回对象类型
+     *
+     * @param <T>   返回对象类型
      * @param index 位置
      * @return 元素
      */
     @SuppressWarnings("unchecked")
-    public <T> T get(int index){
+    public <T> T get(int index) {
         return (T) members[index];
     }
 
     /**
      * 获得所有元素
+     *
      * @return 获得所有元素
      */
-    public Object[] getMembers(){
+    public Object[] getMembers() {
         return this.members;
     }
 
@@ -49,20 +56,20 @@ public class Tuple extends CloneSupport<Tuple> implements Iterable<Object>, Seri
      * @param cacheHash 是否缓存hash值
      * @return this
      */
-    public Tuple setCacheHash(boolean cacheHash){
+    public Tuple setCacheHash(boolean cacheHash) {
         this.cacheHash = cacheHash;
         return this;
     }
 
     @Override
     public int hashCode() {
-        if(this.cacheHash && 0 != this.hashCode){
+        if (this.cacheHash && 0 != this.hashCode) {
             return this.hashCode;
         }
         final int prime = 31;
         int result = 1;
         result = prime * result + Arrays.deepHashCode(members);
-        if(this.cacheHash){
+        if (this.cacheHash) {
             this.hashCode = result;
         }
         return result;

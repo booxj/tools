@@ -116,5 +116,7 @@ public class DESedeCoder {
         byte[] en = encrypt(str.getBytes(), key.getBytes());
         System.out.println(new String(en));
         System.out.println(new String(decrypt(en,key.getBytes())));
+
+
     }
 }
